@@ -45,9 +45,14 @@
     localStorage.setItem('counter', count);
   }
 
-  // Load the last count value from localStorage on page load
+  // Initialize the counter to 0 only if it's the first visit
   window.onload = function() {
-    let count = parseInt(localStorage.getItem('counter')) || 0;
+    let count = parseInt(localStorage.getItem('counter'));
+    if (isNaN(count)) {
+      // Initialize the counter to 0 if there's no previous value stored
+      count = 0;
+      localStorage.setItem('counter', count);
+    }
     document.getElementById('counter').innerText = count;
   };
 </script>
