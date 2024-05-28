@@ -13,16 +13,17 @@
     font-size: 36px;
     margin-bottom: 20px;
   }
-#button {
-    padding: 10px 20px;
-    font-size: 18px;
+#button, #refreshButton {
+    padding: 15px 30px;
+    font-size: 20px;
     cursor: pointer;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
-  #button:hover {
+  #button:hover, #refreshButton:hover {
     background-color: #0056b3;
   }
 </style>
@@ -30,7 +31,8 @@
 <body>
 <h1>Puff Counter</h1>
 <div id="counter">0</div>
-<button id="button" onclick="incrementCounter()">Puff</button>
+<button id="button" onclick="incrementCounter()">Puff</button><br>
+<button id="refreshButton" onclick="refreshCounter()">Refresh</button>
 
 <script>
   // Function to increment the counter
@@ -45,7 +47,15 @@
     localStorage.setItem('counter', count);
   }
 
-  // Initialize the counter to 0 only if it's the first visit
+  // Function to reset the counter to 0
+  function refreshCounter() {
+    // Reset the counter display to 0
+    document.getElementById('counter').innerText = '0';
+    // Reset the count value in localStorage to 0
+    localStorage.setItem('counter', '0');
+  }
+
+  // Initialize the counter on page load
   window.onload = function() {
     let count = parseInt(localStorage.getItem('counter'));
     if (isNaN(count)) {
