@@ -33,12 +33,23 @@
 <button id="button" onclick="incrementCounter()">Puff</button>
 
 <script>
-  let count = 0;
-
+  // Function to increment the counter
   function incrementCounter() {
+    // Retrieve the last count value from localStorage
+    let count = parseInt(localStorage.getItem('counter')) || 0;
+    // Increment the count
     count++;
+    // Update the counter display
     document.getElementById('counter').innerText = count;
+    // Store the updated count value in localStorage
+    localStorage.setItem('counter', count);
   }
+
+  // Load the last count value from localStorage on page load
+  window.onload = function() {
+    let count = parseInt(localStorage.getItem('counter')) || 0;
+    document.getElementById('counter').innerText = count;
+  };
 </script>
 </body>
 </html>
